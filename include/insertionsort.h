@@ -7,13 +7,13 @@
 * Go up in the array and swap values if necessary
 * return the array
 */
-float* InsertionSort_goUp(float *_values, int _nbValues, int _j) {
-	if (_j < 1 || _values[_j - 1] <= _values[_j]) {
+float* insertionSort_goUp(float *_values, int _nbValues, int _gap, int _j) {
+	if (_j < _gap || _values[_j - _gap] <= _values[_j]) {
 		return _values;
 	} else {
-		swap(&_values[_j - 1], &_values[_j]);
+		swap(&_values[_j - _gap], &_values[_j]);
 
-		return InsertionSort_goUp(_values, _nbValues, (_j - 1));
+		return insertionSort_goUp(_values, _nbValues, _gap, (_j - _gap));
 	}
 }
 
@@ -21,11 +21,11 @@ float* InsertionSort_goUp(float *_values, int _nbValues, int _j) {
 * Sort the array until all values are checked
 * return the sorted array
 */
-float* InsertionSort_goOn(float *_values, int _nbValues, int _i) {
+float* insertionSort_goOn(float *_values, int _nbValues, int _gap, int _i) {
 	if (_i == _nbValues) {
 		return _values;
 	} else {
-		return InsertionSort_goOn(InsertionSort_goUp(_values, _nbValues, _i), _nbValues, (_i + 1));
+		return insertionSort_goOn(insertionSort_goUp(_values, _nbValues, _gap, _i), _nbValues, _gap, (_i + 1));
 	}
 }
 
@@ -33,8 +33,8 @@ float* InsertionSort_goOn(float *_values, int _nbValues, int _i) {
 * Sort the array with the Insertion Sort Algorithm
 * return the sorted array
 */
-float* InsertionSort(float *_values, int _nbValues) {
-	return InsertionSort_goOn(_values, _nbValues, 1);
+float* insertionSort(float *_values, int _nbValues, int _gap) {
+	return insertionSort_goOn(_values, _nbValues, _gap, 1);
 }
 
 #endif
