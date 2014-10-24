@@ -3,23 +3,25 @@
 
 #include <utils.h>
 #include <bubblesort.h>
+#include <insertionsort.h>
 
 //////////
 // MAIN //
 //////////
 
 int main() {
-	int nbValues = 5;
+	int nbValues = 6;
 	float *values = (float *) malloc(sizeof(float) * nbValues);
 	values[0] = 3;
 	values[1] = 2;
 	values[2] = 4;
 	values[3] = 5;
-	values[4] = 0;
+	values[4] = 3;
+	values[5] = 0;
 
 	free(
 		printArray(
-			bubbleSort(
+			InsertionSort(
 				printArray(
 					values,
 					nbValues),
